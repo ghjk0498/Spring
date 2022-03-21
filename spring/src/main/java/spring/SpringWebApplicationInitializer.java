@@ -26,9 +26,11 @@ public class SpringWebApplicationInitializer extends AbstractAnnotationConfigDis
 	protected Filter[] getServletFilters() {
 		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
 		characterEncodingFilter.setEncoding("UTF-8");
-//		characterEncodingFilter.setForceEncoding(true);
+		characterEncodingFilter.setForceEncoding(true);
 		
-		return new Filter[] { characterEncodingFilter };
+		LoginCheckFilter loginCheckFilter = new LoginCheckFilter();
+		
+		return new Filter[] { characterEncodingFilter, loginCheckFilter };
 	}
 
 }
