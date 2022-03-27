@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -20,19 +21,20 @@
 </head>
 <body>
 	<div class="container">
-      <form class="form-signin">
+      <form:form method="POST" action="login" modelAttribute="loginVO" class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <form:label path="email" class="sr-only">Email address</form:label>
+        <form:input type="email" path="email" class="form-control" placeholder="Email address" required="" autofocus=""/>
+        <form:label path="password" class="sr-only">Password</form:label>
+        <form:input type="password" path="password" class="form-control" placeholder="Password" required=""/>
+        <form:hidden path="redirectURL"/>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
+      </form:form>
 
     </div>
 	<!-- /container -->

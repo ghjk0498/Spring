@@ -1,4 +1,4 @@
-package spring;
+package spring.login;
 
 import java.io.IOException;
 
@@ -15,11 +15,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.PatternMatchUtils;
 
+import spring.SessionConst;
+
 public class LoginCheckFilter implements Filter {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginCheckFilter.class);
 	private static final String[] allowlist = {"/spring/", "/spring/resources/*",
-												"/spring/members/add", "/spring/login", "/spring/logout"};
+												"/spring/members/add", "/spring/loginForm", "/spring/login", "/spring/logout"};
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -31,8 +33,8 @@ public class LoginCheckFilter implements Filter {
 		try {
 			HttpSession session = httpRequest.getSession(false);
 			if (isLoginCheckPath(requestURI)) {
-				if (session == null || session.getAttribute("LoginMember") == null) {
-					httpResponse.sendRedirect("login?redirectURL=" + requestURI);
+				if (session == null || session.getAttribute("User") == null) {
+					httpResponse.sendRedirect("loginForm?redirectURL=" + requestURI);
 					return;
 				}
 			}
