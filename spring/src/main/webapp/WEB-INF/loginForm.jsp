@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -25,8 +26,10 @@
         <h2 class="form-signin-heading">Please sign in</h2>
         <form:label path="email" class="sr-only">Email address</form:label>
         <form:input type="email" path="email" class="form-control" placeholder="Email address" required="" autofocus=""/>
+        <form:errors path="email"/>
         <form:label path="password" class="sr-only">Password</form:label>
         <form:input type="password" path="password" class="form-control" placeholder="Password" required=""/>
+        <form:errors path="password"/>
         <form:hidden path="redirectURL"/>
         <div class="checkbox">
           <label>

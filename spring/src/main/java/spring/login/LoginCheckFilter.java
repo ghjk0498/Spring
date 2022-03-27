@@ -34,7 +34,7 @@ public class LoginCheckFilter implements Filter {
 			HttpSession session = httpRequest.getSession(false);
 			if (isLoginCheckPath(requestURI)) {
 				if (session == null || session.getAttribute("User") == null) {
-					httpResponse.sendRedirect("loginForm?redirectURL=" + requestURI);
+					httpResponse.sendRedirect("login?redirectURL=" + requestURI);
 					return;
 				}
 			}
