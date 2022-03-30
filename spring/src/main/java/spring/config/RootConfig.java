@@ -2,9 +2,13 @@ package spring.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import spring.rest.config.RestConfig;
 
-@ComponentScan(basePackages= {"spring.login.service"})
 @Configuration
+@ComponentScan(basePackages= {"spring.login.service"})
+@Import(RestConfig.class)
 public class RootConfig {
 
+	
 }

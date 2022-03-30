@@ -1,7 +1,10 @@
 package spring.config;
 
 import javax.servlet.Filter;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -9,6 +12,9 @@ import spring.login.filter.LoginCheckFilter;
 
 public class SpringWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+//	@Value("${spring.profiles.active}")
+//	private String activeProfile;
+	
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class<?>[] { RootConfig.class };
@@ -34,5 +40,12 @@ public class SpringWebApplicationInitializer extends AbstractAnnotationConfigDis
 		
 		return new Filter[] { characterEncodingFilter, loginCheckFilter };
 	}
+	
+//	@Override
+//	public void onStartup(ServletContext servletContext) throws ServletException {
+//		super.onStartup(servletContext);
+//		
+//		servletContext.setInitParameter("spring.profiles.active", activeProfile);
+//	}
 
 }
