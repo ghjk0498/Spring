@@ -7,7 +7,7 @@ import spring.rest.config.RestConfig;
 
 @Configuration
 @ComponentScan(basePackages= {"spring.login.service"})
-@Import(RestConfig.class)
+@Import({DBConfig.class, RestConfig.class})
 public class RootConfig {
 
 	

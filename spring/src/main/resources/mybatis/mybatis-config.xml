@@ -5,6 +5,6 @@
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 	<typeAliases>
-		<typeAlias alias="LoginVO" type="spring.login.LoginVO"/>
+		<typeAlias alias="LoginVO" type="spring.login.service.LoginVO"/>
 	</typeAliases>
 </configuration>
