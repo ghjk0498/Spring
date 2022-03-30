@@ -1,4 +1,4 @@
-package spring.login;
+package spring.login.service;
 
 public class SessionVO {
 

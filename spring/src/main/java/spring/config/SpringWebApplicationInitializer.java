@@ -1,11 +1,11 @@
-package spring;
+package spring.config;
 
 import javax.servlet.Filter;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import spring.login.LoginCheckFilter;
+import spring.login.filter.LoginCheckFilter;
 
 public class SpringWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 

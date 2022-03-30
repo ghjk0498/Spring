@@ -1,4 +1,4 @@
-package spring;
+package spring.config;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 @Configuration
-@MapperScan(basePackages= {"spring.login"})
+@MapperScan(basePackages= {"spring.login.mapper"})
 public class DBConfig {
 
 	@Autowired

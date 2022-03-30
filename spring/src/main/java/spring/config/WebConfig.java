@@ -1,4 +1,4 @@
-package spring;
+package spring.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages= {"spring.login"})
+@ComponentScan(basePackages= {"spring.login.web"})
 @Import(DBConfig.class)
 public class WebConfig implements WebMvcConfigurer {
 

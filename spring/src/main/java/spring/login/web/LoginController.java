@@ -1,4 +1,4 @@
-package spring.login;
+package spring.login.web;
 
 import javax.validation.Valid;
 
@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import spring.login.service.LoginService;
+import spring.login.service.LoginVO;
 
 @Controller
 public class LoginController {

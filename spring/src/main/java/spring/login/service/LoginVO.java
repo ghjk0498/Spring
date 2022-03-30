@@ -1,4 +1,4 @@
-package spring.login;
+package spring.login.service;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
