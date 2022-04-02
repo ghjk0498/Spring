@@ -11,7 +11,7 @@ import spring.login.mapper.LoginMapper;
 
 @Service
 public class LoginService {
-
+	
 	@Autowired
 	private LoginMapper loginMapper;
 	

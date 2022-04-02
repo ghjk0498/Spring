@@ -23,7 +23,7 @@ public class LoginController {
 	
 	@GetMapping("/login")
 	public String loginForm(LoginVO loginVO) {
-		logger.info(loginVO.toString());
+		logger.debug(loginVO.toString());
 		return "loginForm";
 	}
 	
@@ -32,21 +32,20 @@ public class LoginController {
 		if (error.hasErrors())
 			return "loginForm";
 		
-		logger.info(loginVO.toString());
+		logger.debug(loginVO.toString());
 		
 		String redirectURL = loginVO.getRedirectURL();
 		if (loginService.login(loginVO)) {
 			if (redirectURL.isEmpty()) {
 				return "loginSuccessTest";
 			} else {
-				return redirectURL.substring(redirectURL.indexOf('/', 1) + 1);
+				logger.debug(redirectURL.substring(redirectURL.indexOf('/', 1) + 1));
+				return "redirect:" + redirectURL.substring(redirectURL.indexOf('/', 1) + 1);
 			}
+		} else {
+			error.reject("failed");
 		}
-		
 		return "loginForm";
 	}
-	
-	
-	
 	
 }

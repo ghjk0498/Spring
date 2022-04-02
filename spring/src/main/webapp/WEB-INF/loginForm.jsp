@@ -30,6 +30,7 @@
         <form:label path="password" class="sr-only">Password</form:label>
         <form:input type="password" path="password" class="form-control" placeholder="Password" required=""/>
         <form:errors path="password"/>
+        <form:errors/>
         <form:hidden path="redirectURL"/>
         <div class="checkbox">
           <label>

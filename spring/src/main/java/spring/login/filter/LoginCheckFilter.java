@@ -19,7 +19,7 @@ public class LoginCheckFilter implements Filter {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginCheckFilter.class);
 	private static final String[] allowlist = {"/spring/", "/spring/resources/*",
-												"/spring/members/add", "/spring/loginForm", "/spring/login", "/spring/logout"};
+												"/spring/user/add", "/spring/login", "/spring/logout"};
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -27,7 +27,7 @@ public class LoginCheckFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		String requestURI = httpRequest.getRequestURI();
-		logger.info(requestURI);
+		logger.debug(requestURI);
 		try {
 			HttpSession session = httpRequest.getSession(false);
 			if (isLoginCheckPath(requestURI)) {
