@@ -11,9 +11,9 @@ import reactor.core.publisher.Mono;
 import spring.rest.Test;
 
 @Controller
-public class TestController {
+public class RestController {
 
-	private static final Logger logger = LoggerFactory.getLogger(TestController.class);
+	private static final Logger logger = LoggerFactory.getLogger(RestController.class);
 	
 	@GetMapping("rest")
 	public String test() {
