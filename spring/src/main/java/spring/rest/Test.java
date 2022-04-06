@@ -5,6 +5,7 @@ public class Test {
 	private String id;
 	private String title;
 	private String text;
+	private String image;
 	
 	public Test() {
 		
@@ -28,10 +29,16 @@ public class Test {
 	public void setText(String text) {
 		this.text = text;
 	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	@Override
 	public String toString() {
-		return "Test [id=" + id + ", title=" + title + ", text=" + text + "]";
+		return "Test [id=" + id + ", title=" + title + ", text=" + text + ", image=" + image + "]";
 	}
 	
 }

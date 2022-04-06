@@ -19,7 +19,7 @@ public class RestController {
 	public String test() {
 		WebClient webClient = WebClient.create();
 		Mono<Test> mono = webClient.get()
-				 .uri("http://localhost:8000/test/1/")
+				 .uri("http://localhost:8000/test/6/")
 				 .accept(MediaType.APPLICATION_JSON)
 				 .retrieve()
 				 .bodyToMono(Test.class);
