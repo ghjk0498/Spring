@@ -39,8 +39,8 @@ public class LoginController {
 			if (redirectURL.isEmpty()) {
 				return "loginSuccessTest";
 			} else {
-				logger.debug(redirectURL.substring(redirectURL.indexOf('/', 1) + 1));
-				return "redirect:" + redirectURL.substring(redirectURL.indexOf('/', 1) + 1);
+				logger.debug(redirectURL);
+				return "redirect:" + redirectURL;
 			}
 		} else {
 			error.reject("failed");

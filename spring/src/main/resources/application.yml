@@ -1,0 +1,20 @@
+server:
+  port: 8080  servlet:
+    context-path: /
+    encoding:      charset: UTF-8      enabled: true      force: true
+
+spring:
+  mvc:
+    view:
+      # jsp 설정
+      prefix: /WEB-INF/view/
+      suffix: .jsp
+  # 자동 새로고침
+  devtools:
+    livereload:
+      enabled: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/spring?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
+    username: root
+    password: root

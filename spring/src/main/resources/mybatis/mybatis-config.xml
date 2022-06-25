@@ -6,5 +6,6 @@
 	</settings>
 	<typeAliases>
 		<typeAlias alias="LoginVO" type="spring.login.service.LoginVO"/>
+		<typeAlias alias="RestVO" type="spring.rest.service.RestVO"/>
 	</typeAliases>
 </configuration>
