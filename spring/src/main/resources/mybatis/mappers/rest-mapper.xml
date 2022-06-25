@@ -6,4 +6,7 @@
 			FROM rest
 			WHERE id = #{id}
 	</select>
+	<insert id="postRestVO" parameterType="RestVO"  useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO rest VALUES (#{id, jdbcType=INTEGER}, #{title}, #{text}, #{imageUrl})
+	</insert>
 </mapper>

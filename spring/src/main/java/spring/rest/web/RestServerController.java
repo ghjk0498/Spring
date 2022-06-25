@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import spring.rest.service.RestServerService;
@@ -20,8 +23,14 @@ public class RestServerController {
 	RestServerService restServerService;
 	
 	@GetMapping("/rest/{id}")
-	public RestVO rest(Model model, @PathVariable int id) {
+	public RestVO get(Model model, @PathVariable int id) {
 		return restServerService.getRestVOById(id);
+	}
+	
+	@PostMapping("/rest")
+	@ResponseBody
+	public RestVO post(@RequestBody RestVO restVO) {
+		return restServerService.postRestVO(restVO);
 	}
 	
 }

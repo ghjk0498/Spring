@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import spring.rest.service.RestClientService;
 import spring.rest.service.RestVO;
@@ -20,20 +22,27 @@ public class RestClientController {
 	@Autowired
 	RestClientService restClientService;
 	
-	@GetMapping("restClient")
-	public String restClient(Model model) {
-		String uri = "http://localhost:8080/rest/1/";
+	@GetMapping("getClient")
+	public String getClient(Model model) {
+		String uri = "http://localhost:8080/rest/1";
 		
 		try {
 			RestVO restVO = restClientService.get(uri);
 			model.addAttribute("restVO", restVO);
-			logger.info("restVO", restVO.toString());
+			logger.info(restVO.toString());
 			return "test";
 		} catch (IOException e) {
 			logger.debug("imageService failed");
 			e.printStackTrace();
 			return "index";
 		}
+	}
+	
+	@PostMapping("postClient")
+	public String postClient(@ModelAttribute RestVO restVO) {
+		String uri = "http://localhost:8080/rest";
+		restClientService.post(uri, restVO);
+		return "test";
 	}
 	
 	@GetMapping("test")

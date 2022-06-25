@@ -10,6 +10,16 @@ public class RestVO {
 	public RestVO() {
 		
 	}
+	
+	public RestVO(Integer id, String title, String text, String imageUrl) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.text = text;
+		this.imageUrl = imageUrl;
+	}
+
+
 
 	public Integer getId() {
 		return id;

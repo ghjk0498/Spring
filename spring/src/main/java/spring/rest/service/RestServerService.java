@@ -21,5 +21,10 @@ public class RestServerService {
 	public RestVO getRestVOById(int id) {
 		return restMapper.getRestVOById(id);
 	}
+
+	public RestVO postRestVO(RestVO restVO) {
+		restMapper.postRestVO(restVO);
+		return restVO;
+	}
 	
 }
