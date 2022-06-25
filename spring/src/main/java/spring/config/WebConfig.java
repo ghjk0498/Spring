@@ -1,5 +1,8 @@
 package spring.config;
 
+import javax.servlet.Filter;
+
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,6 +15,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import spring.login.filter.LoginCheckFilter;
 
 @Configuration
 @EnableWebMvc
@@ -32,6 +37,12 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("index");
+	}
+	
+	@Bean
+	public FilterRegistrationBean<Filter> filterBean() {
+		FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<Filter>(new LoginCheckFilter());
+		return filterRegistrationBean;
 	}
 	
 	
