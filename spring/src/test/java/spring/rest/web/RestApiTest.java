@@ -76,7 +76,7 @@ public class RestApiTest {
 	@Test
 	public void postTest() throws Exception {
 		RestVO restVO = new RestVO();
-		restVO.setId(null); // auto_increment
+		restVO.setId(7); // auto_increment
 		restVO.setTitle("spring-test-title");
 		restVO.setText("spring-test-text");
 		restVO.setImageUrl("spring-test-imageUrl");
@@ -86,6 +86,41 @@ public class RestApiTest {
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/rest")
 				.content(objectMapper.writeValueAsString(restVO))
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN)
+				.characterEncoding(StandardCharsets.UTF_8.displayName());
+		
+		mockMvc.perform(requestBuilder)
+			.andExpect(MockMvcResultMatchers.status().isOk())
+			.andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+			.andReturn()
+			.getResponse();
+	}
+	
+	@Test
+	public void putTest() throws Exception {
+		RestVO restVO = new RestVO();
+		restVO.setId(7);
+		restVO.setTitle("spring-test-title-update");
+		restVO.setText("spring-test-text-update");
+		restVO.setImageUrl("spring-test-imageUrl-update");
+		
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/rest/" + restVO.getId())
+				.content(objectMapper.writeValueAsString(restVO))
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN)
+				.characterEncoding(StandardCharsets.UTF_8.displayName());
+		
+		mockMvc.perform(requestBuilder)
+			.andExpect(MockMvcResultMatchers.status().isOk())
+			.andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+			.andReturn()
+			.getResponse();
+	}
+	
+	@Test
+	public void deleteTest() throws Exception {
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/rest/" + 7)
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN)
 				.characterEncoding(StandardCharsets.UTF_8.displayName());

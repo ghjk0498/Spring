@@ -7,18 +7,22 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import spring.rest.mapper.RestMapper;
 
@@ -30,7 +34,23 @@ public class RestClientService {
 	@Autowired
 	ServletContext servletContext;
 	
-	public RestVO get(String uri) throws IOException {
+	public List<RestVO> getAllRestVO(String uri) throws IOException {
+		logger.info(uri);
+		Mono<List<RestVO>> mono = WebClient.builder()
+				.build()
+				.get()
+				.uri(uri)
+				.accept(MediaType.APPLICATION_JSON)
+				.retrieve()
+				.bodyToMono(new ParameterizedTypeReference<List<RestVO>>() {})
+				.log();
+		
+		List<RestVO> restVOList = mono.block();
+		logger.info(restVOList.toString());
+		return restVOList;
+	}
+	
+	public RestVO getRestVOById(String uri) throws IOException {
 		Mono<RestVO> mono = WebClient.builder()
 				.build()
 				.get()
@@ -40,11 +60,9 @@ public class RestClientService {
 				.bodyToMono(RestVO.class);
 		RestVO restVO = mono.block();
 		return restVO;
-		
-//		imageDownload(test.getTitle(), test.getImageUrl());
 	}
 	
-	public void post(String uri, RestVO restVO) {
+	public void postRestVO(String uri, RestVO restVO) {
 		WebClient.builder()
 			.build()
 			.post()
@@ -55,6 +73,30 @@ public class RestClientService {
 			.bodyToMono(RestVO.class)
 			.block();
 	}
+
+	public void putRestVO(String uri, RestVO restVO) {
+		WebClient.builder()
+			.build()
+			.put()
+			.uri(uri)
+			.body(BodyInserters.fromValue(restVO))
+			.accept(MediaType.APPLICATION_JSON)
+			.retrieve()
+			.bodyToMono(RestVO.class)
+			.block();
+	}
+
+	public void deleteRestVO(String uri) {
+		WebClient.builder()
+			.build()
+			.delete()
+			.uri(uri)
+			.accept(MediaType.APPLICATION_JSON)
+			.retrieve()
+			.bodyToMono(RestVO.class)
+			.block();
+	}
+
 //	
 //	public void imageDownload(String title, String imgUrl) throws IOException {
 //		URL url = new URL(imgUrl);

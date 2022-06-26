@@ -20,7 +20,7 @@ public class LoginCheckFilter implements Filter {
 	private static final Logger logger = LoggerFactory.getLogger(LoginCheckFilter.class);
 	private static final String[] allowlist = {"/", "/resources/*",
 												"/user/add", "/login", "/logout",
-												"/rest/*"};
+												"/rest", "/rest/*", "/rest-client", "/rest-client/*"};
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -28,7 +28,7 @@ public class LoginCheckFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		String requestURI = httpRequest.getRequestURI();
-		logger.debug(requestURI);
+		logger.info(requestURI);
 		try {
 			HttpSession session = httpRequest.getSession(false);
 			if (isLoginCheckPath(requestURI)) {

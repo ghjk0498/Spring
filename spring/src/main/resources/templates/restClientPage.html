@@ -1,0 +1,43 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<table class="tb_col">
+		<tr>
+			<th>id</th>
+			<th>title</th>
+			<th>text</th>
+			<th>imageUrl</th>
+		</tr>
+		<tr th:each="restVO : ${restVOList}">
+			<td th:text="${restVO.id}"></td>
+			<td th:text="${restVO.title}"></td>
+			<td th:text="${restVO.text}"></td>
+			<td th:text="${restVO.imageUrl}"></td>
+		</tr>
+	</table>
+	<form method="POST" action="/rest-client" name="post-form">
+		<input type="text" name="id" value="1" id="id"/>
+		<input type="text" name="title" value="postClient-title"/>
+		<input type="text" name="text" value="postClient-text"/>
+		<input type="text" name="imageUrl" value="postClient-imageUrl"/>
+		<button type="button" onClick="post('post')">post</button>
+		<button type="button" onClick="post('put')">update</button>
+		<button type="button" onClick="post('delete')">delete</button>
+	</form>
+	
+	<script>
+		function post(mode) {
+			if (mode == "post") {
+				document['post-form'].action = "/rest-client";
+				document.getElementById("id").value = null;
+			} else if (mode == "put") {
+				document['post-form'].action = "/rest-client/" + document.getElementById("id").value + "/put";
+			} else if (mode == "delete") {
+				document['post-form'].action = "/rest-client/" + document.getElementById("id").value + "/delete";
+			}
+			document['post-form'].submit();
+		}
+	</script>
+</body>
+</html>

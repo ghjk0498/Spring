@@ -23,7 +23,6 @@ public class LoginController {
 	
 	@GetMapping("/login")
 	public String loginForm(LoginVO loginVO) {
-		logger.debug(loginVO.toString());
 		return "loginForm";
 	}
 	
@@ -32,14 +31,11 @@ public class LoginController {
 		if (error.hasErrors())
 			return "loginForm";
 		
-		logger.debug(loginVO.toString());
-		
 		String redirectURL = loginVO.getRedirectURL();
 		if (loginService.login(loginVO)) {
 			if (redirectURL.isEmpty()) {
 				return "loginSuccessTest";
 			} else {
-				logger.debug(redirectURL);
 				return "redirect:" + redirectURL;
 			}
 		} else {
