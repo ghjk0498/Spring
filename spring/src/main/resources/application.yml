@@ -4,6 +4,8 @@ server:
     encoding:      charset: UTF-8      enabled: true      force: true
 
 spring:
+  profiles:
+    active:dev
   mvc:
     view:
       # jsp 설정
@@ -18,3 +20,6 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/spring?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
     username: root
     password: root
+
+rest:
+  server-url: http://localhost:8080/rest

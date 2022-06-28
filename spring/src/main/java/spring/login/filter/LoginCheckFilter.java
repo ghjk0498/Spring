@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.util.PatternMatchUtils;
 
 public class LoginCheckFilter implements Filter {
@@ -20,7 +21,8 @@ public class LoginCheckFilter implements Filter {
 	private static final Logger logger = LoggerFactory.getLogger(LoginCheckFilter.class);
 	private static final String[] allowlist = {"/", "/resources/*",
 												"/user/add", "/login", "/logout",
-												"/rest/*"};
+												"/rest", "/rest/*", "/rest-client", "/rest-client/*",
+												"/ajax", "/ajax/*", "/ajax-client", "/ajax-client/*",};
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -28,7 +30,7 @@ public class LoginCheckFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		String requestURI = httpRequest.getRequestURI();
-		logger.debug(requestURI);
+		logger.info(requestURI);
 		try {
 			HttpSession session = httpRequest.getSession(false);
 			if (isLoginCheckPath(requestURI)) {

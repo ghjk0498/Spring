@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table class="tb_col">
+		<tr>
+			<th>id</th>
+			<th>title</th>
+			<th>text</th>
+			<th>imageUrl</th>
+		</tr>
+		<tr th:each="restVO : ${restVOList}">
+			<td th:text="${restVO.id}"></td>
+			<td th:text="${restVO.title}"></td>
+			<td th:text="${restVO.text}"></td>
+			<td th:text="${restVO.imageUrl}"></td>
+		</tr>
+	</table>
+	<form method="POST" action="/rest-client" name="post-form">
+		<input type="hidden" name="_method" value="POST" id="method">
+		<input type="text" name="id" value="1" id="id"/>
+		<input type="text" name="title" value="postClient-title" id="title"/>
+		<input type="text" name="text" value="postClient-text" id="text"/>
+		<input type="text" name="imageUrl" value="postClient-imageUrl" id="imageUrl"/>
+		<button type="button" onClick="post('post')">post</button>
+		<button type="button" onClick="post('put')">put</button>
+		<button type="button" onClick="post('delete')">delete</button>
+	</form>
+	
+	<script>
+		function post(mode) {
+			document.getElementById("method").value = mode;
+			if (mode == "post") {
+				document.getElementById("id").value = null;
+				document['post-form'].action = "/rest-client";
+			} else if (mode == "put") {
+				document['post-form'].action = "/rest-client/" + document.getElementById("id").value;
+			} else if (mode == "delete") {
+				document.getElementById("title").value = null;
+				document.getElementById("text").value = null;
+				document.getElementById("imageUrl").value = null;
+				document['post-form'].action = "/rest-client/" + document.getElementById("id").value;
+			}
+			document['post-form'].submit();
+		}
+	</script>
+</body>
+</html>
