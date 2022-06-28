@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<table class="tb_col" id="data-table">
+	<tr>
+		<th>id</th>
+		<th>title</th>
+		<th>text</th>
+		<th>imageUrl</th>
+	</tr>
+	<tr th:each="restVO : ${restVOList}">
+		<td th:text="${restVO.id}"></td>
+		<td th:text="${restVO.title}"></td>
+		<td th:text="${restVO.text}"></td>
+		<td th:text="${restVO.imageUrl}"></td>
+	</tr>
+</table>
+</html>

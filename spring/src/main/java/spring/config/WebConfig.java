@@ -21,13 +21,7 @@ import spring.login.filter.LoginCheckFilter;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages= {"spring.login.web", "spring.rest.web"})
 public class WebConfig implements WebMvcConfigurer {
-
-	@Override
-	public void configureViewResolvers(ViewResolverRegistry registry) {
-		registry.jsp("/WEB-INF/", ".jsp");
-	}
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -54,13 +48,6 @@ public class WebConfig implements WebMvcConfigurer {
 		messageSource.setBasenames("classpath:message/message-common");
 		messageSource.setDefaultEncoding("UTF-8");
 		return messageSource;
-	}
-	
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer properties() {
-		PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
-		configurer.setLocation(new ClassPathResource("props/globals.properties"));
-		return configurer;
 	}
 	
 }

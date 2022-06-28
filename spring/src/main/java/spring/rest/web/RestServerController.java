@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import spring.rest.service.RestServerService;
 import spring.rest.service.RestVO;
 
-@ResponseBody
 @RestController
 public class RestServerController {
 

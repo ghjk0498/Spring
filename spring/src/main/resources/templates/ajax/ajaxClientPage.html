@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<table class="tb_col" id="data-table">
+		<tr>
+			<th>id</th>
+			<th>title</th>
+			<th>text</th>
+			<th>imageUrl</th>
+		</tr>
+	</table>
+	
+	<form>
+		<input type="text" name="id" value="1" id="id"/>
+		<input type="text" name="title" value="postClient-title" id="title"/>
+		<input type="text" name="text" value="postClient-text" id="text"/>
+		<input type="text" name="imageUrl" value="postClient-imageUrl" id="imageUrl"/>
+		<button type="button" onclick="dataGet()">get</button>
+		<button type="button" onClick="dataPost()">post</button>
+		<button type="button" onClick="dataPut()">put</button>
+		<button type="button" onClick="dataDelete()">delete</button>
+	</form>
+	<script th:inline="javascript">
+		$(function() {
+			dataGet();
+		})
+		
+		function dataGet() {
+			$.ajax({
+				url: "/ajax",
+				type: "get",
+				success: function onData(data) {
+					console.log("dataGet() - ajax success");
+				},
+				error: function onError(error) {
+					console.error(error);
+				}
+			})
+			.done(function(data) {
+				$("#data-table").replaceWith(data);
+			});
+		}
+		
+		function dataPost() {
+			data = {
+					title : $("#title").val(),
+					text : $("#text").val(),
+					imageUrl : $("#imageUrl").val(),
+			};
+			$.ajax({
+				url: "/ajax",
+				type: "post",
+				contentType: "application/json; charset=utf-8",
+			    data : JSON.stringify(data),
+				success: function onData(data) {
+					console.log("dataPost() - ajax success");
+				},
+				error: function onError(error) {
+					console.error(error);
+				}
+			})
+			.done(function() {
+				dataGet();
+			});
+		}
+		
+		function dataPut() {
+			data = {
+					id : $("#id").val(),
+					title : $("#title").val(),
+					text : $("#text").val(),
+					imageUrl : $("#imageUrl").val(),
+			};
+			$.ajax({
+				url: "/ajax/put",
+				type: "post",
+				contentType: "application/json; charset=utf-8",
+			    data : JSON.stringify(data),
+				success: function onData(data) {
+					console.log("dataPut() - ajax success");
+				},
+				error: function onError(error) {
+					console.error(error);
+				}
+			})
+			.done(function() {
+				dataGet();
+			});
+		}
+		
+		function dataDelete() {
+			data = {
+					id : $("#id").val()
+			};
+			$.ajax({
+				url: "/ajax/delete",
+				type: "post",
+				contentType: "application/json; charset=utf-8",
+			    data : JSON.stringify(data),
+				success: function onData(data) {
+					console.log("dataDelete() - ajax success");
+				},
+				error: function onError(error) {
+					console.error(error);
+				}
+			})
+			.done(function() {
+				dataGet();
+			});
+		}
+	</script>
+</body>
+</html>
