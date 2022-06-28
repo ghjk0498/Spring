@@ -63,14 +63,14 @@ public class RestClientController {
 		return "redirect:/rest-client";
 	}
 	
-	@PostMapping("/rest-client/{id}/put")
+	@PutMapping("/rest-client/{id}")
 	public String putRestVO(@ModelAttribute RestVO restVO, @PathVariable int id) {
 		String uri = serverUrl + "/" + id;
 		restClientService.putRestVO(uri, restVO);
 		return "redirect:/rest-client";
 	}
 	
-	@PostMapping("/rest-client/{id}/delete")
+	@DeleteMapping("/rest-client/{id}")
 	public String deleteRestVO(@PathVariable int id) {
 		String uri = serverUrl + "/" + id;
 		restClientService.deleteRestVO(uri);

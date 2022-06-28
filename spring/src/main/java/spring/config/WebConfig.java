@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -36,8 +37,16 @@ public class WebConfig implements WebMvcConfigurer {
 	
 	@Profile("!test")
 	@Bean
-	public FilterRegistrationBean<Filter> filterBean() {
+	public FilterRegistrationBean<Filter> loginFilter() {
 		FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<Filter>(new LoginCheckFilter());
+		filterRegistrationBean.setOrder(1);
+		return filterRegistrationBean;
+	}
+	
+	@Bean
+	public FilterRegistrationBean<Filter> hiddenHttpMethodFilter() {
+		FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<Filter>(new HiddenHttpMethodFilter());
+		filterRegistrationBean.setOrder(10);
 		return filterRegistrationBean;
 	}
 	

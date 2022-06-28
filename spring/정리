@@ -6,3 +6,6 @@
 =================================================================================================================================
 1. rest api에 로그인 필터 적용되지 않게 할 것. 요청할 때 로그인 필터가 적용되면 302 redirect와 함께 결과가 null이 나옴.
 2. json으로 넘어온 데이터를 컨트롤러에서 @RequestBody로 받아야 함. @ModelAttribute로 받을 수 없음.
+3. HiddenHttpMethodFilter : 스프링 3.0부터 제공해주는 필터로, PUT, DELETE, PATCH 요청을 _method를 통해 어떤 값인지 받아 올 수 있고 @Controller 단에 맵핑을 해준다.
+HttpPutFormContentFilter : 기존 서블릿 스펙은 HTTP POST의 폼 데이터만 보낼 수 있게 정의되어 있는데, PUT, PATCH 도 특정 컨텐츠 타입(application/x-www-form-urlencoded)으로 폼 데이터를 보내오면 POST에서 꺼낼 수 있는 것처럼 Wrapping을 해준다.
+참고 : https://wooody92.github.io/spring%20boot/Spring-Boot-HttpMessageConverters/

@@ -20,10 +20,11 @@
 		</tr>
 	</table>
 	<form method="POST" action="/rest-client" name="post-form">
+		<input type="hidden" name="_method" value="POST" id="method">
 		<input type="text" name="id" value="1" id="id"/>
-		<input type="text" name="title" value="postClient-title"/>
-		<input type="text" name="text" value="postClient-text"/>
-		<input type="text" name="imageUrl" value="postClient-imageUrl"/>
+		<input type="text" name="title" value="postClient-title" id="title"/>
+		<input type="text" name="text" value="postClient-text" id="text"/>
+		<input type="text" name="imageUrl" value="postClient-imageUrl" id="imageUrl"/>
 		<button type="button" onClick="post('post')">post</button>
 		<button type="button" onClick="post('put')">put</button>
 		<button type="button" onClick="post('delete')">delete</button>
@@ -31,13 +32,17 @@
 	
 	<script>
 		function post(mode) {
+			document.getElementById("method").value = mode;
 			if (mode == "post") {
-				document['post-form'].action = "/rest-client";
 				document.getElementById("id").value = null;
+				document['post-form'].action = "/rest-client";
 			} else if (mode == "put") {
-				document['post-form'].action = "/rest-client/" + document.getElementById("id").value + "/put";
+				document['post-form'].action = "/rest-client/" + document.getElementById("id").value;
 			} else if (mode == "delete") {
-				document['post-form'].action = "/rest-client/" + document.getElementById("id").value + "/delete";
+				document.getElementById("title").value = null;
+				document.getElementById("text").value = null;
+				document.getElementById("imageUrl").value = null;
+				document['post-form'].action = "/rest-client/" + document.getElementById("id").value;
 			}
 			document['post-form'].submit();
 		}

@@ -24,15 +24,32 @@
 		<button type="button" onClick="dataPost()">post</button>
 		<button type="button" onClick="dataPut()">put</button>
 		<button type="button" onClick="dataDelete()">delete</button>
+		<button type="button" onclick="dataGetAll()">getAll</button>
 	</form>
 	<script th:inline="javascript">
 		$(function() {
-			dataGet();
+			dataGetAll();
 		})
+		
+		function dataGetAll() {
+			$.ajax({
+				url: "/ajax",
+				type: "get",
+				success: function onData(data) {
+					console.log("dataGetAll() - ajax success");
+				},
+				error: function onError(error) {
+					console.error(error);
+				}
+			})
+			.done(function(data) {
+				$("#data-table").replaceWith(data);
+			});
+		}
 		
 		function dataGet() {
 			$.ajax({
-				url: "/ajax",
+				url: "/ajax/" + $("#id").val(),
 				type: "get",
 				success: function onData(data) {
 					console.log("dataGet() - ajax success");
@@ -50,13 +67,13 @@
 			data = {
 					title : $("#title").val(),
 					text : $("#text").val(),
-					imageUrl : $("#imageUrl").val(),
+					imageUrl : $("#imageUrl").val()
 			};
 			$.ajax({
 				url: "/ajax",
 				type: "post",
 				contentType: "application/json; charset=utf-8",
-			    data : JSON.stringify(data),
+			    data: JSON.stringify(data),
 				success: function onData(data) {
 					console.log("dataPost() - ajax success");
 				},
@@ -65,7 +82,7 @@
 				}
 			})
 			.done(function() {
-				dataGet();
+				dataGetAll();
 			});
 		}
 		
@@ -74,11 +91,11 @@
 					id : $("#id").val(),
 					title : $("#title").val(),
 					text : $("#text").val(),
-					imageUrl : $("#imageUrl").val(),
+					imageUrl : $("#imageUrl").val()
 			};
 			$.ajax({
-				url: "/ajax/put",
-				type: "post",
+				url: "/ajax",
+				type: "put",
 				contentType: "application/json; charset=utf-8",
 			    data : JSON.stringify(data),
 				success: function onData(data) {
@@ -89,7 +106,7 @@
 				}
 			})
 			.done(function() {
-				dataGet();
+				dataGetAll();
 			});
 		}
 		
@@ -98,8 +115,8 @@
 					id : $("#id").val()
 			};
 			$.ajax({
-				url: "/ajax/delete",
-				type: "post",
+				url: "/ajax",
+				type: "delete",
 				contentType: "application/json; charset=utf-8",
 			    data : JSON.stringify(data),
 				success: function onData(data) {
@@ -110,7 +127,7 @@
 				}
 			})
 			.done(function() {
-				dataGet();
+				dataGetAll();
 			});
 		}
 	</script>
