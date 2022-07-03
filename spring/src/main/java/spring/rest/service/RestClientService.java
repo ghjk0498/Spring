@@ -35,7 +35,6 @@ public class RestClientService {
 	ServletContext servletContext;
 	
 	public List<RestVO> getAllRestVO(String uri) throws IOException {
-		logger.info(uri);
 		Mono<List<RestVO>> mono = WebClient.builder()
 				.build()
 				.get()
