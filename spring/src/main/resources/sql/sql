@@ -1,0 +1,15 @@
+create table login_user (
+	email varchar primary key,
+	password varchar not null
+);
+insert into login_user values ('test@test.com', 'test@123');
+select * from login_user;
+
+create table rest (
+	id serial primary key,
+	title varchar not null,
+	text varchar not null,
+	imageUrl varchar not null
+);
+insert into rest values(default, 'test_title', 'test_text', 'test_url');
+select * from rest;

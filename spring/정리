@@ -3,6 +3,9 @@
 *** from *** .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
 ***  to  *** .andExpect(MockMvcResultMatchers.content().contentType CompatibleWith(MediaType.APPLICATION_JSON))
 
+@@@ PostgreSQL 외부접근
+--- https://gofogo.tistory.com/47
+*** 기본적으로 localhost 수준에서 DB 접근을 허용하기 때문에 외부에서 접근하려면 pg_hba.conf 파일을 수정해야 함.
 =================================================================================================================================
 1. rest api에 로그인 필터 적용되지 않게 할 것. 요청할 때 로그인 필터가 적용되면 302 redirect와 함께 결과가 null이 나옴.
 2. json으로 넘어온 데이터를 컨트롤러에서 @RequestBody로 받아야 함. @ModelAttribute로 받을 수 없음.

@@ -4,8 +4,6 @@ server:
     encoding:      charset: UTF-8      enabled: true      force: true
 
 spring:
-  profiles:
-    active:dev
   mvc:
     view:
       # jsp 설정
@@ -16,9 +14,8 @@ spring:
     livereload:
       enabled: true
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/spring?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
-    username: root
+    url: jdbc:postgresql://127.0.0.1:5432/spring
+    username: postgres
     password: root
 
 rest:

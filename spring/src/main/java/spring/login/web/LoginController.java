@@ -34,7 +34,7 @@ public class LoginController {
 		String redirectURL = loginVO.getRedirectURL();
 		if (loginService.login(loginVO)) {
 			if (redirectURL.isEmpty()) {
-				return "loginSuccessTest";
+				return "redirect:";
 			} else {
 				return "redirect:" + redirectURL;
 			}

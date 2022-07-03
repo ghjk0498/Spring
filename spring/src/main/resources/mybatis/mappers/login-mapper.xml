@@ -3,7 +3,7 @@
 <mapper namespace="spring.login.mapper.LoginMapper">
 	<select id="actionLogin" parameterType="LoginVO" resultType="LoginVO">
 		SELECT email, password
-			FROM user
+			FROM login_user
 			WHERE email = #{email} AND password = #{password}
 	</select>
 </mapper>

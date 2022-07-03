@@ -1,11 +1,7 @@
 package spring.rest.web;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -41,23 +37,6 @@ public class RestApiTest {
 		this.mockMvc = mockMvc;
 		this.objectMapper = objectMapper;
 	}
-
-	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-	private final PrintStream originalOut = System.out;
-	private final PrintStream originalErr = System.err;
-
-	@Before
-	public void setUpStreams() {
-	    System.setOut(new PrintStream(outContent));
-	    System.setErr(new PrintStream(errContent));
-	}
-
-	@After
-	public void restoreStreams() {
-	    System.setOut(originalOut);
-	    System.setErr(originalErr);
-	}
 	
 	@Test
 	public void getTest() throws Exception {
@@ -80,9 +59,6 @@ public class RestApiTest {
 		restVO.setTitle("spring-test-title");
 		restVO.setText("spring-test-text");
 		restVO.setImageUrl("spring-test-imageUrl");
-		
-//		System.out.println(restVO);
-//		System.out.println(objectMapper.writeValueAsString(restVO));
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/rest")
 				.content(objectMapper.writeValueAsString(restVO))
