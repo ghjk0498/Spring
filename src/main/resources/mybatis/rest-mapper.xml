@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.rest.mapper.RestMapper">
+	<select id="getAllRestVO" resultType="spring.rest.vo.RestVO">
+		select id, title, text, image_url
+			FROM rest
+	</select>
+	<select id="getRestVOById" parameterType="int" resultType="spring.rest.vo.RestVO">
+		SELECT id, title, text, image_url
+			FROM rest
+			WHERE id = #{id}
+	</select>
+	<insert id="postRestVO" parameterType="spring.rest.vo.RestVO"  useGeneratedKeys="true" keyProperty="id">
+		INSERT
+			INTO rest
+			VALUES (
+				#{id, jdbcType=INTEGER}
+				, #{title}
+				, #{text}
+				, #{imageUrl}
+			)
+	</insert>
+	<update id="putRestVO" parameterType="spring.rest.vo.RestVO">
+		UPDATE rest
+			SET title = #{title}
+				, text = #{text}
+				, image_url = #{imageUrl}
+			WHERE id = #{id}
+	</update>
+	<delete id="deleteRestVO" parameterType="int">
+		DELETE
+			FROM rest
+			WHERE id = #{id}
+	</delete>
+</mapper>

@@ -3,28 +3,22 @@ package spring.rest.service;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
 import spring.rest.mapper.RestMapper;
+import spring.rest.vo.RestVO;
 
 @Service
+@RequiredArgsConstructor
 public class RestServerService {
 
-	private static final Logger logger = LoggerFactory.getLogger(RestServerService.class);
-	
-	@Autowired
-	ServletContext servletContext;
-	@Autowired
-	RestMapper restMapper;
-	
+	private final RestMapper restMapper;
+
 	public List<Map<String, RestVO>> getAllRestVO() {
 		return restMapper.getAllRestVO();
 	}
-	
+
 	public RestVO getRestVOById(int id) {
 		return restMapper.getRestVOById(id);
 	}
@@ -43,5 +37,5 @@ public class RestServerService {
 		restMapper.deleteRestVO(id);
 		return id;
 	}
-	
+
 }

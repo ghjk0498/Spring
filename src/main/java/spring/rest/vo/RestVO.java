@@ -1,4 +1,4 @@
-package spring.rest.service;
+package spring.rest.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,5 +23,5 @@ public class RestVO {
 	@NonNull
 	private String text;
 	private String imageUrl;
-	
+
 }

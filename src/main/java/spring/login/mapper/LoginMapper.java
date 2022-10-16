@@ -2,7 +2,7 @@ package spring.login.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import spring.login.service.LoginVO;
+import spring.login.vo.LoginVO;
 
 @Mapper
 public interface LoginMapper {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="spring.login.mapper.LoginMapper">
-	<select id="actionLogin" parameterType="LoginVO" resultType="LoginVO">
+	<select id="actionLogin" parameterType="spring.login.vo.LoginVO" resultType="spring.login.vo.LoginVO">
 		SELECT email, password
 			FROM login_user
 			WHERE email = #{email} AND password = #{password}

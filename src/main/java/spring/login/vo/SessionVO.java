@@ -1,4 +1,4 @@
-package spring.login.service;
+package spring.login.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

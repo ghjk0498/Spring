@@ -3,7 +3,26 @@ server:
     context-path: /
     encoding:      charset: UTF-8      enabled: true      force: true
 
+spring:  profiles:    active: test
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: mybatis/*.xml
+
+springdoc:
+  swagger-ui:
+    disable-swagger-default-url: true
+    path: /swagger-ui
+rest:
+  server-url: http://localhost:8080/rest
+  
+---
+
 spring:
+  config:
+    activate:
+      on-profile: test
   mvc:
     view:
       # jsp 설정
@@ -16,7 +35,4 @@ spring:
   datasource:
     url: jdbc:postgresql://127.0.0.1:5432/postgres
     username: postgres
-    password: root
-
-rest:
-  server-url: http://localhost:8080/rest
+    password: postgres

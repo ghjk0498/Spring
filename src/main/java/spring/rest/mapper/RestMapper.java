@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import spring.rest.service.RestVO;
+import spring.rest.vo.RestVO;
 
 @Mapper
 public interface RestMapper {
