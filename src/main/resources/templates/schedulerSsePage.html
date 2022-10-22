@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>SSE (15 Second)</h2>
+	<script src="/resources/js/jquery-3.6.1.min.js"></script>
+	<script type="text/javascript">
+		const id = "test";
+		const eventSource = new EventSource("http://localhost:8080/sse/subscribe/" + id);
+		eventSource.onmessage = event => {
+			console.log(new Date() + "\n" + event.data);
+		}
+		eventSource.onerror = error => {
+			eventSource.close();
+		}
+	</script>
+</body>
+</html>
