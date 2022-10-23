@@ -5,15 +5,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>SSE (15 Second)</h2>
-	<button onclick="location.href='/sse-next'">Next</button>
-	<script src="/resources/js/jquery-3.6.1.min.js"></script>
+	<h2>SSE Next</h2>
 	<script src="/resources/js/common.js"></script>
 	<script type="text/javascript">
-		const eventSource = getSseEventSource("TestID");
-		eventSource.onmessage = event => {
+		const nextEventSource = getSseEventSource("NextID");
+		nextEventSource.onmessage = event => {
 			console.log(new Date() + "\nCustom: " + event.data);
 		}
+		const testEventSource = getSseEventSource("TestID");
 	</script>
 </body>
 </html>
