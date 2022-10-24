@@ -5,9 +5,12 @@ function getSseEventSource(id) {
 		console.log(new Date() + "\nDefault: " + event.data);
 	}
 	eventSource.onerror = error => {
-		console.log(error);
+
 		if (error.eventPhase == eventSource.CLOSED) {
-			es.close();
+			console.log("EventSource closed");
+			eventSource.close();
+		} else {
+			console.log(error);
 		}
 
 //		location.reload();
