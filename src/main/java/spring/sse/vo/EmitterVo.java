@@ -13,5 +13,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class EmitterVo {
 	private String id;
+	private String ipAddr;
 	private SseEmitter emitter;
 }

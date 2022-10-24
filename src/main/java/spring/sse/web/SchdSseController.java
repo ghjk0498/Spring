@@ -1,5 +1,7 @@
 package spring.sse.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
@@ -28,8 +30,8 @@ public class SchdSseController {
 	}
 
 	@GetMapping("/sse/subscribe/{id}")
-	public SseEmitter subscribe(@PathVariable String id) {
-		SseEmitter sseEmitter = sseService.subscribe(id);
+	public SseEmitter subscribe(@PathVariable String id, HttpServletRequest request) {
+		SseEmitter sseEmitter = sseService.subscribe(id, request.getRemoteAddr());
 		return sseEmitter;
 	}
 

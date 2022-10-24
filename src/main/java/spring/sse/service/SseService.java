@@ -20,19 +20,20 @@ public class SseService {
 
 	private final ServletContext context;
 
-	public SseEmitter subscribe(String id) {
+	public SseEmitter subscribe(String id, String ipAddr) {
 		List<EmitterVo> sseEmitterList = (List<EmitterVo>) context.getAttribute("sseEmitterList");
 		if (sseEmitterList == null) {
 			sseEmitterList = new ArrayList<>();
 		}
 
-		Optional<EmitterVo> opt = sseEmitterList.stream().filter(e -> e.getId().equals(id)).findAny();
+		Optional<EmitterVo> opt = sseEmitterList.stream().filter(e -> e.getId().equals(id) && e.getId().equals(ipAddr)).findAny();
 		if (opt.isPresent()) {
 			return opt.get().getEmitter();
 		}
 
 		EmitterVo emitter = new EmitterVo();
 		emitter.setId(id);
+		emitter.setIpAddr(ipAddr);
 		emitter.setEmitter(new SseEmitter(-1L)); // no timeout
 		sseEmitterList.add(emitter);
 		context.setAttribute("sseEmitterList", sseEmitterList);
