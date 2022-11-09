@@ -14,6 +14,13 @@
 		eventSource.onmessage = event => {
 			console.log(new Date() + "\nCustom: " + event.data);
 		}
+		function call(n) {
+			for (let i = 0; i < n; i++) {
+				setTimeout(() => {
+					getSseEventSource("TestID" + i);
+				}, i*1000);
+			}
+		}
 	</script>
 </body>
 </html>

@@ -26,8 +26,10 @@ public class SseService {
 			sseEmitterList = new ArrayList<>();
 		}
 
-		Optional<EmitterVo> opt = sseEmitterList.stream().filter(e -> e.getId().equals(id) && e.getId().equals(ipAddr)).findAny();
+		Optional<EmitterVo> opt = sseEmitterList.stream().filter(e -> e.getId().equals(id) && e.getIpAddr().equals(ipAddr)).findAny();
+		log.info(id);
 		if (opt.isPresent()) {
+			log.info("present");
 			return opt.get().getEmitter();
 		}
 

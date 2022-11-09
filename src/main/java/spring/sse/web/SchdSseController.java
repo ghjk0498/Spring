@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import lombok.RequiredArgsConstructor;
@@ -38,6 +39,12 @@ public class SchdSseController {
 	@Scheduled(cron = "0/15 * * * * *")
 	public void callFront() {
 		sseService.callTest();
+	}
+	@GetMapping("/callTest")
+	@ResponseBody
+	public String callTest() {
+		sseService.callTest();
+		return "call";
 	}
 
 }
