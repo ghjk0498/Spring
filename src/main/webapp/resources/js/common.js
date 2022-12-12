@@ -7,8 +7,6 @@ function getSseEventSource(id) {
 	eventSource.onerror = error => {
 
 		if (error.eventPhase == eventSource.CLOSED) {
-			console.log("EventSource closed");
-			eventSource.close();
 		} else {
 			console.log(error);
 		}

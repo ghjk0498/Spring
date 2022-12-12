@@ -4,6 +4,21 @@ server:
     encoding:      charset: UTF-8      enabled: true      force: true
 
 spring:  profiles:    active: test
+  application:
+    name: spring
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+management:  endpoint:
+    metrics:
+      enabled: true
+    prometheus:      enabled: true
+  endpoints:
+    web:
+      exposure:        include: "*"
+  metrics:    tags:
+      application: ${spring.application.name}
 
 mybatis:
   configuration:

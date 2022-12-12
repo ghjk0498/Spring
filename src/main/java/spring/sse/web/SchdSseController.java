@@ -1,7 +1,9 @@
 package spring.sse.web;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
+import javax.servlet.ServletContext;
+import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,8 @@ import spring.sse.service.SseService;
 @Controller
 public class SchdSseController {
 
+	private final ServletContext context;
+
 	private final SseService sseService;
 
 	@GetMapping("/sse")
@@ -30,9 +34,15 @@ public class SchdSseController {
 		return "schedulerSseNextPage.html";
 	}
 
-	@GetMapping("/sse/subscribe/{id}")
-	public SseEmitter subscribe(@PathVariable String id, HttpServletRequest request) {
-		SseEmitter sseEmitter = sseService.subscribe(id, request.getRemoteAddr());
+	@GetMapping(value = "/sse/subscribe/{id}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+	public SseEmitter subscribe(@PathVariable String id) {
+		SseEmitter sseEmitter = sseService.subscribe(id);
+		return sseEmitter;
+	}
+
+	@GetMapping(value = "/sse/subscribe2/{id}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+	public SseEmitter subscribe2(@PathVariable String id) {
+		SseEmitter sseEmitter = sseService.subscribe(id);
 		return sseEmitter;
 	}
 
@@ -45,6 +55,14 @@ public class SchdSseController {
 	public String callTest() {
 		sseService.callTest();
 		return "call";
+	}
+
+	@GetMapping("/sseCheck")
+	@ResponseBody
+	public String sseCheck() {
+		Map<String, SseEmitter> sseEmitterMap = (Map<String, SseEmitter>) context.getAttribute("sseEmitterMap");
+		String result = String.valueOf(sseEmitterMap.size()) + "\n" + sseEmitterMap.toString();
+		return result;
 	}
 
 }
