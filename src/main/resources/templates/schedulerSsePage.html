@@ -11,6 +11,7 @@
 	<script src="/resources/js/common.js"></script>
 	<script type="text/javascript">
 		const eventSource = getSseEventSource("TestID");
+
 		eventSource.onmessage = event => {
 			console.log(new Date() + "\nCustom: " + event.data);
 		}
