@@ -19,10 +19,12 @@ import org.springframework.util.PatternMatchUtils;
 public class LoginCheckFilter implements Filter {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginCheckFilter.class);
-	private static final String[] allowlist = {"/", "/resources/*", "/actuator/**",
+	private static final String[] allowlist = {
+												"/", "/resources/*", "/actuator/**",
 												"/user/add", "/login", "/logout",
 												"/rest", "/rest/*", "/rest-client", "/rest-client/*",
-												"/ajax", "/ajax/*", "/ajax-client", "/ajax-client/*",};
+												"/ajax", "/ajax/*", "/ajax-client", "/ajax-client/*",
+												};
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

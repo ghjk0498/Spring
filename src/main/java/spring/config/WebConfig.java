@@ -23,34 +23,34 @@ import spring.login.filter.LoginCheckFilter;
 @Configuration
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
-	
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**")
 				.addResourceLocations("/resources/");
 	}
-	
+
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("index");
 	}
-	
-	@Profile("!test")
-	@Bean
-	public FilterRegistrationBean<Filter> loginFilter() {
-		FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<Filter>(new LoginCheckFilter());
-		filterRegistrationBean.setOrder(1);
-		return filterRegistrationBean;
-	}
-	
-	@Bean
-	public FilterRegistrationBean<Filter> hiddenHttpMethodFilter() {
-		FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<Filter>(new HiddenHttpMethodFilter());
-		filterRegistrationBean.setOrder(10);
-		return filterRegistrationBean;
-	}
-	
-	
+
+//	@Profile("!test")
+//	@Bean
+//	public FilterRegistrationBean<Filter> loginFilter() {
+//		FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<Filter>(new LoginCheckFilter());
+//		filterRegistrationBean.setOrder(1);
+//		return filterRegistrationBean;
+//	}
+//
+//	@Bean
+//	public FilterRegistrationBean<Filter> hiddenHttpMethodFilter() {
+//		FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<Filter>(new HiddenHttpMethodFilter());
+//		filterRegistrationBean.setOrder(10);
+//		return filterRegistrationBean;
+//	}
+
+
 	@Bean
 	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
@@ -58,5 +58,5 @@ public class WebConfig implements WebMvcConfigurer {
 		messageSource.setDefaultEncoding("UTF-8");
 		return messageSource;
 	}
-	
+
 }

@@ -46,10 +46,10 @@ public class SchdSseController {
 		return sseEmitter;
 	}
 
-	@Scheduled(cron = "0/15 * * * * *")
-	public void callFront() {
-		sseService.callTest();
-	}
+//	@Scheduled(cron = "0/15 * * * * *")
+//	public void callFront() {
+//		sseService.callTest();
+//	}
 	@GetMapping("/callTest")
 	@ResponseBody
 	public String callTest() {

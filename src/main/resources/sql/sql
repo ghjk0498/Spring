@@ -5,6 +5,7 @@ create table login_user (
 insert into login_user values ('test@test.com', 'test@123');
 select * from login_user;
 
+
 create table rest (
 	id serial primary key,
 	title varchar not null,
@@ -13,3 +14,8 @@ create table rest (
 );
 insert into rest values(default, 'test_title', 'test_text', 'test_url');
 select * from rest;
+
+
+CREATE TABLE players (id INT, about TEXT, age INT);
+INSERT INTO players (id, about, age) VALUES (generate_series(1, 1000),  repeat('A cool player. ', 2) || 'My number is ' || trunc(random()*1000), trunc(random()*10 * 2 + 10));
+select id, about, age from players;

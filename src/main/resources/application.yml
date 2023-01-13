@@ -6,9 +6,6 @@ server:
 spring:  profiles:    active: test
   application:
     name: spring
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
 
 management:  endpoint:
     metrics:
@@ -51,3 +48,7 @@ spring:
     url: jdbc:postgresql://127.0.0.1:5432/postgres
     username: postgres
     password: postgres
+
+logging:
+  level:
+    spring.auto.rest.mapper: DEBUG

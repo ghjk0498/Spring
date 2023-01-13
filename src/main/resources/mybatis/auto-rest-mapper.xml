@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.auto.rest.mapper.AutoRestMapper">
+	<select id="selectAllByTableFullName" parameterType="Map" resultType="Map">
+		select
+			<choose>
+				<when test="columnList != null">
+					<foreach item="column" index="index" collection="columnList" separator=",">
+						${column}
+					</foreach>
+				</when>
+				<otherwise>
+					*
+				</otherwise>
+			</choose>
+			FROM ${tableFullName}
+	</select>
+	<select id="selectColumnsByTableName" parameterType="String" resultType="String">
+		SELECT column_name
+			FROM information_schema.columns
+			WHERE 1=1
+				AND table_schema = #{schemaName}
+				AND table_name   = #{tableName}
+	</select>
+</mapper>
